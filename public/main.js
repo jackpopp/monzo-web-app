@@ -33,7 +33,7 @@ if (code !== null && state !== null) {
     }
     
     const urlParams = new URLSearchParams(window.location.search);
-    fetch(`https://relaxed-meninsky-eaf91e.netlify.com/.netlify/functions/accessToken?code=${CODE}&state=${urlParams.get('state')}`)
+    fetch(`https://relaxed-meninsky-eaf91e.netlify.com/.netlify/functions/accessToken?code=${code}&state=${state}`)
         .then((res) => res.json())
         .then(startApp);
 }
