@@ -37,7 +37,7 @@ exports.handler = function(event, context, callback) {
                     data += chunk;
                 });
 
-                response.on('end', () => {
+                res.on('end', () => {
                     callback(null, {
                         statusCode: 200,
                         body: data
