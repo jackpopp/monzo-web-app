@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import needle from 'needle';
 
 exports.handler = async function(event, context, callback) {
@@ -16,18 +15,24 @@ exports.handler = async function(event, context, callback) {
             redirect_uri: REDIRECT_URL,
             client_secret: 'XXXX',
             code: CODE});
-            
-            const result = await needle('post', ACCESS_TOKEN_URL, {
+
+            const result = needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
                 client_id: CLIENT_ID,
                 redirect_uri: REDIRECT_URL,
                 client_secret: CLIENT_SECRET,
                 code: CODE
-            });
-    
-            callback(null, {
-                statusCode: 200,
-                body: JSON.stringify(result)
+            }).then(() => {
+                callback(null, {
+                    statusCode: 200,
+                    body: JSON.stringify(result)
+                });
+            }).catch((e) => {
+                console.log(e)
+                callback(null, {
+                    statusCode: 500,
+                    body: JSON.stringify({ error: `Error: ${e.message}` })
+                });
             });
         } catch (e) {
             console.log(e)
