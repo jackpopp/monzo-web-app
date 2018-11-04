@@ -10,13 +10,13 @@ exports.handler = function(event, context, callback) {
 
     if (CODE && STATE) {
         try {
-            const data = {
+            const data = JSON.stringify({
                 grant_type: 'authorization_code',
                 client_id: CLIENT_ID,
                 redirect_uri: REDIRECT_URL,
                 client_secret: CLIENT_SECRET,
                 code: CODE
-            };
+            });
 
               const options = {
                 host : 'api.monzo.com',
