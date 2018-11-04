@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:functions",
+    "build": "cp -R functions dist/functions && node build.js",
     "build:functions": "npx parcel build functions/* --out-dir dist/functions"
   },
   "keywords": [],
