@@ -11,13 +11,13 @@ exports.handler = function(event, context, callback) {
     if (CODE && STATE) {
         try {
 
-            const result = needle('post', ACCESS_TOKEN_URL, {
+            needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
                 client_id: CLIENT_ID,
                 redirect_uri: REDIRECT_URL,
                 client_secret: CLIENT_SECRET,
                 code: CODE
-            }).then(() => {
+            }).then((result) => {
                 callback(null, {
                     statusCode: 200,
                     body: JSON.stringify(result)
