@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:functions && node build.js",
+    "build": "npm run build:functions && node build.js && (cd dist/functions && npm install)",
     "build:functions": "npx babel functions --out-dir dist/functions --copy-files"
   },
   "keywords": [],
