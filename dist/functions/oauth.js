@@ -1,4 +1,12 @@
-parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r},p.cache={};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({"+Vj4":[function(require,module,exports) {
-exports.handler=function(t,e,o){var c="".concat(void 0),a="".concat(void 0),n=t.queryStringParameters.state;o(null,{statusCode:302,headers:{Location:"https://auth.monzo.com/?client_id=".concat(c,"&redirect_uri=").concat(a,"&response_type=code&state=").concat(n)}})};
-},{}]},{},["+Vj4"], null)
-//# sourceMappingURL=/oauth.map
+exports.handler = function (event, context, callback) {
+  const CLIENT_ID = `${process.env.CLIENT_ID}`;
+  const REDIRECT_URL = `${process.env.REDIRECT_URL}`;
+  const STATE_TOKEN = event.queryStringParameters.state;
+  const AUTH_URL = `https://auth.monzo.com/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code&state=${STATE_TOKEN}`;
+  callback(null, {
+    statusCode: 302,
+    headers: {
+      Location: AUTH_URL
+    }
+  });
+};
