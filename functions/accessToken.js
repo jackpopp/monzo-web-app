@@ -11,6 +11,12 @@ exports.handler = async function(event, context, callback) {
 
     if (CODE && STATE) {
         try {
+            console.log({grant_type: 'authorization_code',
+            client_id: CLIENT_ID,
+            redirect_uri: REDIRECT_URL,
+            client_secret: 'XXXX',
+            code: CODE});
+            
             const result = await needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
                 client_id: CLIENT_ID,
@@ -24,9 +30,10 @@ exports.handler = async function(event, context, callback) {
                 body: JSON.stringify(result)
             });
         } catch (e) {
+            console.log(e)
             callback(null, {
                 statusCode: 500,
-                body: JSON.stringify({ error: e })
+                body: JSON.stringify({ error: `Error: ${e.message}` })
             });
         }
     }
