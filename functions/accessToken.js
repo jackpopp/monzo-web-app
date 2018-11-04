@@ -18,8 +18,9 @@ exports.handler = function(event, context, callback) {
                 code: CODE
             };
 
-            const formData = JSON.stringify(data);
+            console.log(data);
 
+            const formData = JSON.stringify(data);
 
             const options = {
                 host : 'api.monzo.com',
