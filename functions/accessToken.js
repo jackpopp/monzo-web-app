@@ -41,16 +41,20 @@ exports.handler = function(event, context, callback) {
                     callback(null, {
                         statusCode: 200,
                         body: data
-                    })
+                    });
                 });
               })
               
               req.on('error', (error) => {
-                console.error(error)
+                console.log(error);
+                callback(null, {
+                    statusCode: 200,
+                    body: error
+                });
               })
               
               req.write('')
-              req.end()
+              req.end();
 
             /*fetch(ACCESS_TOKEN_URL, { 
                 method: 'POST',
