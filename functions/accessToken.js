@@ -41,10 +41,10 @@ exports.handler = function(event, context, callback) {
                 body: JSON.stringify({ error: `Error: ${e.message}` })
             });
         }
+    } else {
+        callback(null, {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'No code provided' })
+        });
     }
-
-    callback(null, {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'No code provided' })
-    });
 }
