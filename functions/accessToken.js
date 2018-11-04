@@ -19,17 +19,17 @@ exports.handler = function(event, context, callback) {
             };
 
             const formData = JSON.stringify(data);
-            const headers = {
-                'Content-Type' : 'application/json',
-                'Content-Length' : Buffer.byteLength(formData, 'utf8')
-            };
+
 
             const options = {
                 host : 'api.monzo.com',
                 port : 443,
                 path : '/oauth2/token',
                 method : 'POST',
-                headers : headers
+                headers : {
+                    'Content-Type' : 'application/json',
+                    'Content-Length' : formData.length
+                }
             };
 
             const request = https.request(options, (response) => {
