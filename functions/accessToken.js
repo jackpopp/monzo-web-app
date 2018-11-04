@@ -18,9 +18,10 @@ exports.handler = function(event, context, callback) {
                 client_secret: CLIENT_SECRET,
                 code: CODE
             }).then((result) => {
+                console.log(result)
                 callback(null, {
                     statusCode: 200,
-                    body: JSON.stringify(result)
+                    body: JSON.stringify(result.body)
                 });
             }).catch((e) => {
                 console.log(e)
