@@ -33,7 +33,7 @@ exports.handler = function(event, context, callback) {
                 console.log(`statusCode: ${res.statusCode}`)
               
                 let data = '';
-                response.on('data', function (chunk) {
+                res.on('data', function (chunk) {
                     data += chunk;
                 });
 
