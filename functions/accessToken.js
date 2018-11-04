@@ -25,7 +25,7 @@ exports.handler = function(event, context, callback) {
                 method: 'POST',
                 headers: {
                   "Content-Type": 'application/x-www-form-urlencoded',
-                  'Content-Length': data.length
+                  'Content-Length': '{}'.length
                 }
               }
               
@@ -53,7 +53,7 @@ exports.handler = function(event, context, callback) {
                 });
               })
               
-              req.write('')
+              req.write('{}')
               req.end();
 
             /*fetch(ACCESS_TOKEN_URL, { 
