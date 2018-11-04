@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp -R functions dist/functions && node build.js",
+    "build": "npm run build:functions",
     "build:functions": "npx parcel build functions/* --out-dir dist/functions"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "express": "^4.16.4",
     "needle": "^2.2.4",
+    "node-fetch": "^2.2.0",
     "parcel": "^1.10.3"
   }
 }

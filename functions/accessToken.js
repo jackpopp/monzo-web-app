@@ -1,4 +1,4 @@
-import needle from 'needle';
+import fetch from 'node-fetch';
 
 exports.handler = function(event, context, callback) {
     const CLIENT_ID = `${process.env.CLIENT_ID}`;
@@ -10,13 +10,34 @@ exports.handler = function(event, context, callback) {
 
     if (CODE && STATE) {
         try {
-            console.log({grant_type: 'authorization_code',
-            client_id: CLIENT_ID,
-            redirect_uri: REDIRECT_URL,
-            client_secret: 'XXXX',
-            code: CODE});
+            const data = {
+                grant_type: 'authorization_code',
+                client_id: CLIENT_ID,
+                redirect_uri: REDIRECT_URL,
+                client_secret: CLIENT_SECRET,
+                code: CODE
+            };
 
-            const result = needle('post', ACCESS_TOKEN_URL, {
+            fetch(ACCESS_TOKEN_URL, { 
+                method: 'POST',
+                body:    JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            .then(res => res.json())
+            .then(result => {
+                callback(null, {
+                    statusCode: 200,
+                    body: JSON.stringify(result)
+                })
+            }).catch((e) => {
+                console.log(e)
+                callback(null, {
+                    statusCode: 500,
+                    body: JSON.stringify({ error: `Error: ${e.message}` })
+                });
+            });
+
+            /*const result = needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
                 client_id: CLIENT_ID,
                 redirect_uri: REDIRECT_URL,
@@ -33,7 +54,7 @@ exports.handler = function(event, context, callback) {
                     statusCode: 500,
                     body: JSON.stringify({ error: `Error: ${e.message}` })
                 });
-            });
+            });*/
         } catch (e) {
             console.log(e)
             callback(null, {
