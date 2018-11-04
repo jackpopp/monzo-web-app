@@ -20,7 +20,7 @@ exports.handler = function (event, context, callback) {
       const formData = JSON.stringify(data);
       const headers = {
         'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(jsonObject, 'utf8')
+        'Content-Length': Buffer.byteLength(formData, 'utf8')
       };
       const options = {
         host: 'api.monzo.com',
@@ -29,7 +29,7 @@ exports.handler = function (event, context, callback) {
         method: 'POST',
         headers: headers
       };
-      https.request(options, response => {
+      const request = https.request(options, response => {
         let data = '';
         response.on('data', function (chunk) {
           data += chunk;
@@ -41,6 +41,8 @@ exports.handler = function (event, context, callback) {
           });
         });
       });
+      request.write(formData);
+      request.end();
       /*fetch(ACCESS_TOKEN_URL, { 
           method: 'POST',
           body:    JSON.stringify(data),
