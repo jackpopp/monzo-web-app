@@ -49,7 +49,7 @@ exports.handler = function(event, context, callback) {
                 console.error(error)
               })
               
-              req.write(data)
+              req.write('')
               req.end()
 
             /*fetch(ACCESS_TOKEN_URL, { 
