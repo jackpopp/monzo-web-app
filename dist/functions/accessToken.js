@@ -17,19 +17,18 @@ exports.handler = function (event, context, callback) {
         client_secret: CLIENT_SECRET,
         code: CODE
       };
-      const formData = JSON.stringify(data);
-      const headers = {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(formData, 'utf8')
-      };
       const options = {
         host: 'api.monzo.com',
         port: 443,
         path: '/oauth2/token',
         method: 'POST',
-        headers: headers
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length
+        }
       };
-      const request = https.request(options, response => {
+      const req = https.request(options, res => {
+        console.log(`statusCode: ${res.statusCode}`);
         let data = '';
         response.on('data', function (chunk) {
           data += chunk;
@@ -41,8 +40,11 @@ exports.handler = function (event, context, callback) {
           });
         });
       });
-      request.write(formData);
-      request.end();
+      req.on('error', error => {
+        console.error(error);
+      });
+      req.write(data);
+      req.end();
       /*fetch(ACCESS_TOKEN_URL, { 
           method: 'POST',
           body:    JSON.stringify(data),
