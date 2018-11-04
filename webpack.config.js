@@ -6,7 +6,7 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: __dirname + '/dist/functions',
-        libraryTarget: 'amd'
+        library: 'handler'
     },
     node: {
         fs: 'empty'
