@@ -9,7 +9,7 @@ files.forEach((file) => {
         Object.keys(process.env).forEach((env) => {
 
             const envValue = process.env[env];
-            const toReplace = `\${process.env.${env}}`;
+            const toReplace = `\${${env}}`;
             code = code.replace(toReplace, envValue);
         });
         
