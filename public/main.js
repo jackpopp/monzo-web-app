@@ -4,7 +4,12 @@
 // get the data
 
 // request.query.code && request.query.state
-console.log('im here');
+// if we done have a code and state then do this
+if () {
+    const state = new Date().getTime();
+    window.location = `https://relaxed-meninsky-eaf91e.netlify.com/.netlify/functions/accessToken?state=${state}`;
+}
+
 
 const startApp = (result) => {
     console.log(result);
