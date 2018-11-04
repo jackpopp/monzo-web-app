@@ -7,8 +7,9 @@ exports.handler = async function(event, context, callback) {
     const REDIRECT_URL = `${process.env.REDIRECT_URL}`;
     const ACCESS_TOKEN_URL = 'https://api.monzo.com/oauth2/token';
     const CODE = event.queryStringParameters.code;
+    const STATE = event.queryStringParameters.state;
 
-    if (request.query.code && request.query.state) {
+    if (CODE && STATE) {
         try {
             const result = await needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
