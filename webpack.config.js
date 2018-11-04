@@ -8,6 +8,7 @@ module.exports = {
         path: __dirname + '/dist/functions',
         libraryTarget: "commonjs"
     },
+    mode: "development",
     target: "node",
     node: {
         fs: 'empty'
