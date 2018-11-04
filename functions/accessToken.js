@@ -1,4 +1,5 @@
-const needle = require('needle');
+import 'babel-polyfill';
+import needle from 'needle';
 
 exports.handler = async function(event, context, callback) {
     const CLIENT_ID = `${process.env.CLIENT_ID}`;
