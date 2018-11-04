@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch/lib/index');
 
 exports.handler = function(event, context, callback) {
     const CLIENT_ID = `${process.env.CLIENT_ID}`;
