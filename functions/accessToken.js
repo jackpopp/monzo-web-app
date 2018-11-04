@@ -1,4 +1,4 @@
-const fetch = require('node-fetch/lib/index');
+var https = require('https');
 
 exports.handler = function(event, context, callback) {
     const CLIENT_ID = `${process.env.CLIENT_ID}`;
@@ -18,7 +18,35 @@ exports.handler = function(event, context, callback) {
                 code: CODE
             };
 
-            fetch(ACCESS_TOKEN_URL, { 
+            const formData = JSON.stringify(data);
+            const headers = {
+                'Content-Type' : 'application/json',
+                'Content-Length' : Buffer.byteLength(jsonObject, 'utf8')
+            };
+
+            const options = {
+                host : 'api.monzo.com',
+                port : 443,
+                path : '/oauth2/token',
+                method : 'POST',
+                headers : headers
+            };
+
+            https.request(options, (response) => {
+                let data = '';
+                response.on('data', function (chunk) {
+                    data += chunk;
+                });
+
+                response.on('end', () => {
+                    callback(null, {
+                        statusCode: 200,
+                        body: data
+                    })
+                });
+            });
+
+            /*fetch(ACCESS_TOKEN_URL, { 
                 method: 'POST',
                 body:    JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json' },
@@ -35,7 +63,7 @@ exports.handler = function(event, context, callback) {
                     statusCode: 500,
                     body: JSON.stringify({ error: `Error: ${e.message}` })
                 });
-            });
+            });*/
 
             /*const result = needle('post', ACCESS_TOKEN_URL, {
                 grant_type: 'authorization_code',
