@@ -5,7 +5,9 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: __dirname + '/dist/functions'
+        path: __dirname + '/dist/functions',
+        libraryTarget: 'commonjs',
+        library: 'handler'
     },
     node: {
         fs: 'empty'
