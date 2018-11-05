@@ -15,14 +15,14 @@ const App = (props) => (
     <div>
         <header></header>
         <main>
-            <ul>
+            <ul className="list">
                 {props.transactions.map(transaction => (
                     <li className="listing">
                         <div className="listing__heading date">{format(transaction.created, 'dddd Do MMMM')}</div>
                         <div className="listing__body">
                             <div className="listing__body-left">
                                 <span className="category">{/*transaction.category*/}</span>
-                                {transaction.description}
+                                <span className="description">{transaction.description}</span>
                             </div>
                             <div className="listing__body-right">
                                 {formatAmount(transaction.local_amount)}
