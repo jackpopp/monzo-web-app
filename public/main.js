@@ -37,8 +37,8 @@ function startApp(accessToken) {
         }
       }).then((res) => res.json())
       .then((res) => {
-        const transaction = res.transactions;
-        transaction.reverse();
+        const transactions = res.transactions;
+        transactions.reverse();
 
         const list = transactions.map((transaction) => {
             return `<li>${transaction.description} - ${Math.abs(transaction.local_amount)/100} - ${transaction.category} - ${transaction.created}</li>`
