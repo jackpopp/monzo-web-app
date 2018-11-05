@@ -1,7 +1,8 @@
 module.exports = {
     entry: {
         accessToken: `${__dirname}/functions/accessToken.js`,
-        oauth: `${__dirname}/functions/oauth.js`
+        oauth: `${__dirname}/functions/oauth.js`,
+        app: `${__dirname}/main.js`
     },
     output: {
         filename: '[name].js',
@@ -12,5 +13,5 @@ module.exports = {
     target: "node",
     node: {
         fs: 'empty'
-      }
+    }
 }
