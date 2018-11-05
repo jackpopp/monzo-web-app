@@ -41,7 +41,7 @@ function startApp(accessToken) {
         transactions.reverse();
 
         const list = transactions.map((transaction) => {
-            return `<li>${transaction.description} - ${Math.abs(transaction.local_amount)/100} - ${transaction.category} - ${transaction.created}</li>`
+            return `<li><p>${transaction.description}</p> <p>${formatAmount(transaction.local_amount)} - ${transaction.category} - ${transaction.created}</p></li>`
         }).join('');
 
         document.querySelector('.root').innerHTML = `<ul>${list}</ul>`;
