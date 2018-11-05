@@ -17,10 +17,10 @@ if (code === null && accessToken === null) {
 
 function getToken() {
     const urlParams = new URLSearchParams(window.location.search);
-    fetch(`https://relaxed-meninsky-eaf91e.netlify.com/.netlify/functions/accessToken?code=${code}&state=${state}`)
+    return fetch(`https://relaxed-meninsky-eaf91e.netlify.com/.netlify/functions/accessToken?code=${code}&state=${state}`)
         .then((res) => res.json())
         .then((res) => {
-            storage.setItem('accessToken', res.access_token);
+            localStorage.setItem('accessToken', res.access_token);
         });
 }
 
