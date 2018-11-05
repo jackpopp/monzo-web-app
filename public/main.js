@@ -24,6 +24,7 @@ if (code !== null && state !== null) {
             }
           }).then((res) => res.json())
           .then((res) => {
+              console.log(res);
             const list = res.transactions.map((transaction) => {
                 return `<li>${transaction.description} - ${Math.abs(transaction.local_amount)/100} - ${transaction.created}</li>`
             }).join('');
