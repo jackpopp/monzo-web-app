@@ -1,3 +1,4 @@
+import renderApp from './components';
 // set the state in local storage, once we have the access token delete it
 // get the query string params
 // do a fetch
@@ -39,12 +40,13 @@ function startApp(accessToken) {
       .then((res) => {
         const transactions = res.transactions;
         transactions.reverse();
+        renderApp({transactions});
 
-        const list = transactions.map((transaction) => {
+        /*const list = transactions.map((transaction) => {
             return `<li><p>${transaction.description}</p> <p>${formatAmount(transaction.local_amount)} - ${transaction.category} - ${transaction.created}</p></li>`
         }).join('');
 
-        document.querySelector('.root').innerHTML = `<ul>${list}</ul>`;
+        document.querySelector('.root').innerHTML = `<ul>${list}</ul>`;*/
       });
 }
 

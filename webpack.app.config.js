@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        app: `${__dirname}/main.js`
+        app: `${__dirname}/src/main.js`
     },
     output: {
         filename: '[name].js',
