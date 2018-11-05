@@ -21,6 +21,7 @@ function getToken() {
         .then((res) => res.json())
         .then((res) => {
             localStorage.setItem('accessToken', res.access_token);
+            return res.access_token
         });
 }
 
@@ -46,6 +47,6 @@ if ((code !== null && state !== null) || (accessToken)) {
     if (accessToken) {
         startApp(accessToken)
     } else {
-        getToken().then(result => startApp(result.access_token));
+        getToken().then(result => startApp(result));
     }
 }
