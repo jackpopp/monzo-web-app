@@ -8,7 +8,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const code = urlParams.get('code');
 const state = urlParams.get('state'); 
-const accessToken = storage.getItem('accessToken');
+const accessToken = localStorage.getItem('accessToken');
 
 if (code === null && accessToken === null) {
     const state = new Date().getTime();
