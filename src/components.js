@@ -9,8 +9,8 @@ const App = (props) => (
     <ul>
         {props.transactions.map(transaction => (
             <li>
-                <p>${transaction.description}</p>
-                <p>${formatAmount(transaction.local_amount)} - ${transaction.category} - ${transaction.created}</p>
+                <p>{transaction.description}</p>
+                <p>{formatAmount(transaction.local_amount)} - {transaction.category} - {transaction.created}</p>
             </li>
         ))}
     </ul>
