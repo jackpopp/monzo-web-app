@@ -8,8 +8,7 @@ html, body {
 }
 
 body {
-    font-family: helvetica;
-    font-weight: 100;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #14233c;
 }
 
@@ -47,7 +46,18 @@ li {
     display: flex; 
     justify-content: space-between;
 }
-  
-.listing__body-right {
+
+.category {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #009688;
+    border: 2px solid #00796B;
+    vertical-align: bottom;
+    border-radius: 3px;
+}
+
+.amount--positive {
+    color: #66BB6A;
     font-size: 18px;
 }

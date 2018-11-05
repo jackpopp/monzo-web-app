@@ -5,7 +5,10 @@ import { format } from 'date-fns'
 import './styles.css';
 
 function formatAmount(amount) {
-    return `£${((amount > 0 ? Math.abs(amount) : amount) / 100).toFixed(2)}`;
+    const className = amount > 0 ? 'amount--positive' : 'amount--negative';
+    return <span className={className}>
+        {amount > 0 ? '+' : '-'}{(Math.abs(amount) / 100).toFixed(2)}
+    </span>;
 }
 
 const App = (props) => (
@@ -18,7 +21,7 @@ const App = (props) => (
                         <div className="listing__heading date">{format(transaction.created, 'dddd Do MMMM')}</div>
                         <div className="listing__body">
                             <div className="listing__body-left">
-                                {transaction.category}
+                                <span className="category">{/*transaction.category*/}</span>
                                 {transaction.description}
                             </div>
                             <div className="listing__body-right">
