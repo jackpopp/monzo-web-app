@@ -1,8 +1,7 @@
 module.exports = {
     entry: {
         accessToken: `${__dirname}/functions/accessToken.js`,
-        oauth: `${__dirname}/functions/oauth.js`,
-        app: `${__dirname}/main.js`
+        oauth: `${__dirname}/functions/oauth.js`
     },
     output: {
         filename: '[name].js',
