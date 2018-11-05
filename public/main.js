@@ -29,7 +29,7 @@ function startApp(accessToken) {
     fetch('https://api.monzo.com/transactions?account_id=acc_00009cHB2QXoGDnGy8XFkf', { 
         method: 'get', 
         headers: {
-          'authorization': `Bearer ${accesToken}`
+          'authorization': `Bearer ${accessToken}`
         }
       }).then((res) => res.json())
       .then((res) => {
