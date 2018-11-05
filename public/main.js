@@ -25,6 +25,10 @@ function getToken() {
         });
 }
 
+function formatAmount(amount) {
+    return `£${((amount > 0 ? Math.abs(amount) : amount) / 100).toFixed(2)}`;
+}
+
 function startApp(accessToken) {
     fetch('https://api.monzo.com/transactions?account_id=acc_00009cHB2QXoGDnGy8XFkf', { 
         method: 'get', 
@@ -33,9 +37,11 @@ function startApp(accessToken) {
         }
       }).then((res) => res.json())
       .then((res) => {
-          console.log(res);
-        const list = res.transactions.map((transaction) => {
-            return `<li>${transaction.description} - ${Math.abs(transaction.local_amount)/100} - ${transaction.created}</li>`
+        const transaction = res.transactions;
+        transaction.reverse();
+
+        const list = transactions.map((transaction) => {
+            return `<li>${transaction.description} - ${Math.abs(transaction.local_amount)/100} - ${transaction.category} - ${transaction.created}</li>`
         }).join('');
 
         document.querySelector('.root').innerHTML = `<ul>${list}</ul>`;
