@@ -11,22 +11,24 @@ function formatAmount(amount) {
 const App = (props) => (
     <div>
         <header></header>
-        <ul>
-            {props.transactions.map(transaction => (
-                <li className="listing">
-                    <div className="listing__heading date">{format(transaction.created, 'dddd Do MMMM')}</div>
-                    <div className="listing__body">
-                        <div className="listing__body-left">
-                            {transaction.category}
-                            {transaction.description}
+        <main>
+            <ul>
+                {props.transactions.map(transaction => (
+                    <li className="listing">
+                        <div className="listing__heading date">{format(transaction.created, 'dddd Do MMMM')}</div>
+                        <div className="listing__body">
+                            <div className="listing__body-left">
+                                {transaction.category}
+                                {transaction.description}
+                            </div>
+                            <div className="listing__body-right">
+                                {formatAmount(transaction.local_amount)}
+                            </div>
                         </div>
-                        <div className="listing__body-right">
-                            {formatAmount(transaction.local_amount)}
-                        </div>
-                    </div>
-                </li>
-            ))}
-        </ul>
+                    </li>
+                ))}
+            </ul>
+        </main>
     </div>
 );
 

@@ -26,10 +26,6 @@ function getToken() {
         });
 }
 
-function formatAmount(amount) {
-    return `£${((amount > 0 ? Math.abs(amount) : amount) / 100).toFixed(2)}`;
-}
-
 function startApp(accessToken) {
     fetch('https://api.monzo.com/transactions?account_id=acc_00009cHB2QXoGDnGy8XFkf', { 
         method: 'get', 
